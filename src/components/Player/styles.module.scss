@@ -1,5 +1,4 @@
 .playerContainer {
-
   padding: 3rem 4rem;
   width: 26.5rem;
   height: 100vh;
@@ -12,25 +11,24 @@
   align-items: center;
   justify-content: space-between;
 
- header{
-  display: flex;
-  align-items: center;
-  gap: 16px;
- }
+  header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
 
- strong {
-  font-family: Lexend, sans-serif;
-  font-weight: 600;
- }
+  strong {
+    font-family: Lexend, sans-serif;
+    font-weight: 600;
+  }
 
- footer {
-   align-self: stretch;
+  footer {
+    align-self: stretch;
 
-   &.empty{
-     opacity: 0.5;
-   }
- }
-
+    &.empty {
+      opacity: 0.5;
+    }
+  }
 }
 .emptyPlayer {
   width: 100%;
@@ -72,9 +70,7 @@
       background: var(--purple-300);
       border-radius: 2px;
     }
-
   }
-  
 }
 
 .buttons {
@@ -96,5 +92,4 @@
       background: var(--purple-400);
     }
   }
-
 }
