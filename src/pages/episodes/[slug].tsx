@@ -3,6 +3,7 @@ import ptBR from 'date-fns/locale/pt-BR';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import styles from './episode.module.scss'
 import { api } from '../../service/api';
@@ -27,10 +28,11 @@ export default function Episode({ episode }: EpisodeProps) {
   return (
     <div className={styles.episode}>
        <div className={styles.thumbnailConteinar}>
-          <button>
-           <img src="/arrow-left.svg" alt="Voltar" />
-          </button> 
-
+          <Link href="/">
+            <button>
+            <img src="/arrow-left.svg" alt="Voltar" />
+            </button>
+          </Link>
           <Image 
             width={700}
             height={160}
