@@ -1,4 +1,4 @@
-import { format, parseISO, secondsToMilliseconds } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { convertDurationToTimeString } from '../../utils/convertDurationToTimeString';
@@ -27,7 +27,7 @@ type EpisodeProps = {
 export default function Episode({ episode }: EpisodeProps) {
   return (
     <div className={styles.episode}>
-       <div className={styles.thumbnailConteinar}>
+       <div className={styles.thumbnailContainer}>
           <Link href="/">
             <button>
             <img src="/arrow-left.svg" alt="Voltar" />
@@ -51,20 +51,34 @@ export default function Episode({ episode }: EpisodeProps) {
         <span>{episode.publishedAt}</span>
         <span>{episode.durationAsString}</span>
       </header>
-      
-      <div 
+      <div>
         className={styles.description}
         dangerouslySetInnerHTML={{ __html: episode.description }}
-      />
-    
+      </div> 
     </div>
   )
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  return { 
-    paths: [],
-    fallback: 'blocking'
+  const { data } = await api.get('episode', {
+    params: {
+      _limit: 12, 
+      _short: 'published_at',
+      _order: 'desc'
+    }
+  })
+
+  const paths = data.map(episode => {
+    return {
+      params: {
+        slug: episode.id,
+      },
+    }
+  })
+
+  return {
+    paths,
+    fallback: `blocking`
   }
 }
 
